@@ -218,7 +218,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	//animClip tempClip;
 
 	
-	if (myDX.loadDLL("Teddy_Idle.fbx"), true)
+	if (myDX.loadDLL("Teddy_Idle.fbx", true))
 	{
 		unsigned int indexCount = 0;
 		myDX.loadFBX(teddyVerts, temp, indexCount, teddyBones, tempLine);
