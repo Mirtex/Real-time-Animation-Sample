@@ -19,8 +19,8 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 DxInstance myDX;
 DxObject cube;
 DxObject grid;
-
 DxObject teddy;
+
 std::vector<VertexPositionColor> teddyVerts;
 std::string teddyName;
 
@@ -282,23 +282,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 			lucilleVerts[x].debugIndex = WEAPON_JOINT_INDEX;
 			lucilleVerts[x].debugBool = Object;
 		}
-		//lucille.OffsetObject();
-		lucille.AssignJoint(WEAPON_JOINT_INDEX);
-		//lucille.SetBindPose(lucilleBones);
-		//lucille.CalculateSkinTransforms();
-	
-		//std::vector<std::vector<XMFLOAT4X4> > theClips;
-		//std::vector<float> times;
-		//float duration = 1;
 		
-		//lucille.SetIndices(temp2, indexCount);
-		//lucille.SetBones(lucilleBones);
-		//lucille.SetBoneIndices(tempLine2);
-	//
-	//	//teddy.CalculateSkinTransforms();
-	//
-	//	//animClip* aclip = teddy.GetAnimClip();
-	//	//cube.TranformObject(teddyBones[1]);
+		lucille.AssignJoint(WEAPON_JOINT_INDEX);
 	}
 	
 	lucille.LoadObject(myDX, false, false);
@@ -307,22 +292,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	myDX.GetTextureName(lucilleName);
 	lucille.SetTextureName(lucilleName);
 	lucille.LoadTexture();
-
-	//totalCubes = teddyBones.size();
-	//for (unsigned int i = 0; i < totalCubes; ++i)
-	//{
-	//	DxObject templateCube;
-	//	templateCube.TranformObject(teddyBones[i]);
-	//	cubes.push_back(templateCube);
-	//}
-	//
-	//for (unsigned int i = 0; i < totalCubes; ++i)
-	//{
-	//	cubes[i].LoadObject(myDX, true);
-	//	cubes[i].CreateBuffers();
-	//
-	//}
-
 
 
 	cube.LoadObject(myDX, true);

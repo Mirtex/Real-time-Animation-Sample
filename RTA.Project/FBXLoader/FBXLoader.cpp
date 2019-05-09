@@ -45,7 +45,7 @@ CFBXLoader::CFBXLoader(const char* filename, bool isAnimated)
 	//Get the name of the texture
 	
 	std::string tempName = ((FbxFileTexture*)m_Scene->GetTexture(0))->GetRelativeFileName();
-	int i = tempName.find_last_of('\\') + 1;
+	size_t i = tempName.find_last_of('\\') + 1;
 	for (; i < tempName.size(); ++i)
 	{
 		textureName.push_back(tempName[i]);
@@ -94,7 +94,7 @@ CFBXLoader::CFBXLoader(const char* filename, bool isAnimated)
 		}				
 		
 		//Get the objects for skinning.
-		for (unsigned int i = 0; i < m_Mesh->GetDeformerCount(); ++i)
+		for (int i = 0; i < m_Mesh->GetDeformerCount(); ++i)
 		{
 			if (m_Mesh->GetDeformer(i)->GetDeformerType() == FbxDeformer::eSkin)
 			{
@@ -267,7 +267,7 @@ bool CFBXLoader::LoadFBX(std::vector<DXEnvironment::VertexPositionColor>& myVert
 		Bone* boneMatch;
 		//Skinning data
 		unsigned int testCounter = 0; //to make sure there are enough weights.
-		for (unsigned int i = 0; i < m_Skinner->GetClusterCount(); ++i)
+		for (int i = 0; i < m_Skinner->GetClusterCount(); ++i)
 		{
 			cluster = m_Skinner->GetCluster(i);
 			currNode = cluster->GetLink();
@@ -286,7 +286,7 @@ bool CFBXLoader::LoadFBX(std::vector<DXEnvironment::VertexPositionColor>& myVert
 			double* vxWeights = cluster->GetControlPointWeights();
 
 			int clusterCount = cluster->GetControlPointIndicesCount();
-			for (unsigned int x = 0; x < clusterCount; x++)
+			for (int x = 0; x < clusterCount; x++)
 			{
 				weightedVerts[iVx[x]].vIndices.push_back(boneMatch->jointIndex);
 				weightedVerts[iVx[x]].weights.push_back(static_cast<float>(vxWeights[x]));
@@ -323,7 +323,7 @@ bool CFBXLoader::LoadFBX(std::vector<DXEnvironment::VertexPositionColor>& myVert
 				tempWeights[x] = 0;
 			}
 			tempVertex = weightedVerts[indexArray[i]].myVert;
-			unsigned int numWeights = weightedVerts[indexArray[i]].vIndices.size();
+			size_t numWeights = weightedVerts[indexArray[i]].vIndices.size();
 			for (unsigned int x = 0; x < numWeights; ++x)
 			{
 				tempIndices[x] = weightedVerts[indexArray[i]].vIndices[x];
@@ -457,9 +457,9 @@ bool CFBXLoader::LoadAnimations()
 
 	for (unsigned int i = 1; i < (unsigned int)m_frameCount; ++i)
 	{
-		myKeyFrame tempKey; int test;
+		myKeyFrame tempKey;
 		m_animDuration.SetFrame(i, FbxTime::eFrames24);
-		tempKey.time = m_animDuration.GetMilliSeconds();
+		tempKey.time = static_cast<float>(m_animDuration.GetMilliSeconds());
 
 		FbxAMatrix tempMatrix;
 		XMFLOAT4X4 portMatrix;
@@ -488,7 +488,6 @@ bool CFBXLoader::LoadAnimations()
 }
 bool CFBXLoader::GetAnimationData(std::vector<std::vector<XMFLOAT4X4 > >& animClip, std::vector<float>& times, float& duration)  // Pass the data to whoever wants it, if available.
 {
-	//fillClip = m_animClip;'
 	std::vector<std::vector<XMFLOAT4X4 > > tempClip;
 	std::vector<float> tempTimes;
 

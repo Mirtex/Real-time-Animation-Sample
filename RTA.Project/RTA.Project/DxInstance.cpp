@@ -429,23 +429,6 @@ namespace DXEnvironment
 	bool DxInstance::loadDLL(char* dll_name, bool isAnimated)
 	{
 		FBXinstance = ActivateLoader(dll_name, isAnimated);
-	//	unloadDLL();
-	//	//static_cast<short>(dll_name)
-	//	char charBuffer[DLLNAME_SIZE];
-	//	fbxDLL = LoadLibrary(dll_name);
-	//
-	//	if (!fbxDLL)
-	//	{
-	//		std::cout << "Error while loading FBX Loader .dll" << std::endl;
-	//		system("pause");
-	//		return false;
-	//	}
-	//
-	//	fbxPtr temp = reinterpret_cast<fbxPtr>(GetProcAddress(fbxDLL, "ActivateLoader"));
-	//	if (!temp)
-	//		return false;
-	//
-	//	FBXinstance = temp();
 
 		return true;
 	}
@@ -458,11 +441,6 @@ namespace DXEnvironment
 			FBXinstance->Terminate();
 			FBXinstance = nullptr;
 		}
-		//if (fbxDLL)
-		//{
-		//	FreeLibrary(fbxDLL);
-		//	fbxDLL = nullptr;
-		//}
 
 		return true;
 	}
@@ -493,23 +471,6 @@ namespace DXEnvironment
 	{
 
 		FBXinstance->GetAnimationData(theClips, times, duration);
-		//std::vector<std::vector<XMFLOAT4X4> > theClips;
-		//std::vector<float> times;
-		//float duration = 1;
-		//animClip tempClip;
-		//
-		//for (unsigned int i = 0; i < (unsigned int)(duration - 1); ++i)
-		//{
-		//	oneKeyFrame tempFrame;
-		//
-		//	tempFrame.joints = theClips[i];
-		//	tempFrame.time = times[i];
-		//
-		//	tempClip.keyFrames.push_back(tempFrame);
-		//}
-		//
-		//myClip = tempClip;
-		//myClip.duration = duration;
 
 		return true;
 	}
