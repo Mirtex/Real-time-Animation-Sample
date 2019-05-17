@@ -1126,16 +1126,23 @@ namespace DXEnvironment
 	bool DxObject::LoadBin(const char* filePath, char* headerChunk, int numberOfBytes)
 	{
 		
+
 		ifstream inputFile;
 		inputFile.open(filePath, ios_base::binary);
 		if (inputFile.is_open() && headerChunk != nullptr)
 		{
+			//Currently ignoring the wireframe and drawwireframe booleans
+			//to keep previous choices for demonstration purposes.
+			bool tempWireframe = false;
+			bool tempDrawWire = false;
+
 			inputFile.read(headerChunk, numberOfBytes);
 			inputFile.read((char*)&objectLoaded,	sizeof(objectLoaded));
 			inputFile.read((char*)&instanceLoaded,	sizeof(instanceLoaded));
 			inputFile.read((char*)&debugMode,		sizeof(debugMode));
-			inputFile.read((char*)&wireframeMode,	sizeof(wireframeMode));
-			inputFile.read((char*)&drawWireFrame,	sizeof(drawWireFrame));
+			inputFile.read((char*)&tempWireframe,	sizeof(tempWireframe));
+			inputFile.read((char*)&tempDrawWire,	sizeof(tempDrawWire));
+
 
 			//Clear the verts, lets be clear :V
 			myVertices.clear();

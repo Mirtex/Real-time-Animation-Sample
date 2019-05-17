@@ -449,17 +449,18 @@ namespace DXEnvironment
 	{
 		FBXinstance->GetModelData();
 		FBXinstance->LoadFBX(container, outIndices, iCount);
+
 		//Test to see the vertex data
-		/*
-		for (unsigned int i = 0; i < container.size(); i++)
-		{
-			if(i % 3 == 0 && i != 0)
-				std::cout << std::endl;
 		
-			std::cout << container[i].pos.x << " " <<container[i].pos.y << " " << container[i].pos.z << std::endl;
-			
-		}
-		*/
+		//for (unsigned int i = 0; i < container.size(); i++)
+		//{
+		//	if(i % 3 == 0 && i != 0)
+		//		std::cout << std::endl;
+		//
+		//	std::cout << container[i].pos.x << " " <<container[i].pos.y << " " << container[i].pos.z << std::endl;
+		//	
+		//}
+		
 
 		FBXinstance->LoadJoints(bones, lineIndices);
 		//FBXinstance->GetTextureName();

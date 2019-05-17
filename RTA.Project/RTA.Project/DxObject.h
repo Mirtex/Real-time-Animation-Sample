@@ -35,6 +35,7 @@ namespace DXEnvironment
 		bool wireframeMode = false;				//Loaded
 		bool drawWireFrame = true;				//Loaded
 
+
 		DxInstance* myInstance = nullptr;
 		std::vector<XMFLOAT3> myVertices;		//Loaded
 		std::vector<XMFLOAT4X4> myBindPose;		//Loaded
